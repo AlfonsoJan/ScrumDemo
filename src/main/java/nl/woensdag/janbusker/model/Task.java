@@ -36,4 +36,8 @@ public class Task {
     public void setCompleted(boolean completed) {
         isCompleted = completed;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
 }
