@@ -2,6 +2,7 @@ package nl.woensdag.janbusker.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Task> tasks;
+    private List<UserStory> userStories;
 
     public Project() {
     }
@@ -25,7 +26,10 @@ public class Project {
     public Project(String name, String description) {
         this.name = name;
         this.description = description;
+        this.userStories = new ArrayList<UserStory>();
     }
+
+    public Long getId() { return id; }
 
     public String getName() {
         return name;
@@ -43,11 +47,11 @@ public class Project {
         this.description = description;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<UserStory> getUserStories() {
+        return userStories;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setUserStories(List<UserStory> userStories) {
+        this.userStories = userStories;
     }
 }

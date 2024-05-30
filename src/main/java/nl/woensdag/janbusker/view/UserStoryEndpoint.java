@@ -1,20 +1,24 @@
 package nl.woensdag.janbusker.view;
 
-import nl.woensdag.janbusker.model.Schip;
 import nl.woensdag.janbusker.model.UserStory;
-import nl.woensdag.janbusker.service.SchipService;
-import nl.woensdag.janbusker.service.UserStoryService;
+import nl.woensdag.janbusker.repository.UserStoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/userstories")
 public class UserStoryEndpoint {
     @Autowired
-    private SchipService userStoryService;
+    private UserStoryRepository userStoryRepository;
 
-    @GetMapping("getUserStory")
-    public Iterable<Schip> getUserStory() {
-        return userStoryService.allShips();
+    @GetMapping(value = "/")
+    public Iterable<UserStory> getAll() {
+        return userStoryRepository.findAll();
+    }
+
+    @GetMapping(value = "/{id}")
+    public UserStory getById(@PathVariable("id") Long id) {
+        var optionalUserStory = userStoryRepository.findById(id);
+        return optionalUserStory.orElse(null);
     }
 }

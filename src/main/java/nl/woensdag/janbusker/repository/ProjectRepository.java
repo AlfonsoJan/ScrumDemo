@@ -1,10 +1,9 @@
 package nl.woensdag.janbusker.repository;
 
-import nl.woensdag.janbusker.model.UserStory;
+import nl.woensdag.janbusker.model.Project;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-
 @Component()
-public interface UserStoryRepository extends CrudRepository<UserStory, Long> {
+public interface ProjectRepository extends CrudRepository<Project, Long> {
 }
