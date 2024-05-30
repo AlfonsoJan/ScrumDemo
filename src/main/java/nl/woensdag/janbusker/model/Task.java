@@ -1,9 +1,12 @@
 package nl.woensdag.janbusker.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 @Entity
-public class Task {
+public class Task implements Serializable {
     @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,6 +16,7 @@ public class Task {
     private boolean isCompleted = false;
 
     @ManyToOne
+    @JsonIgnore
     private UserStory userStory;
 
     public Task() { }
