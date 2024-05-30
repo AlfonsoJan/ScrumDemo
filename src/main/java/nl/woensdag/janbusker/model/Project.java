@@ -17,7 +17,7 @@ public class Project {
     private String description;
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Task> tasks;
+    private List<UserStory> userStories;
 
     public Project() {
     }
@@ -43,11 +43,11 @@ public class Project {
         this.description = description;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
+    public List<UserStory> getUserStories() {
+        return userStories;
     }
 
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
+    public void setUserStories(List<UserStory> userStories) {
+        this.userStories = userStories;
     }
 }
