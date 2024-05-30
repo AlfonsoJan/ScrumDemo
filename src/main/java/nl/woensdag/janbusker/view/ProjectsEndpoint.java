@@ -4,7 +4,9 @@ import nl.woensdag.janbusker.model.Project;
 import nl.woensdag.janbusker.model.UserStory;
 import nl.woensdag.janbusker.repository.ProjectRepository;
 import nl.woensdag.janbusker.service.ProjectService;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -44,5 +46,11 @@ public class ProjectsEndpoint {
     @PostMapping(value = "/{id}/userstories")
     public UserStory addUserStory(@PathVariable("id") Long id, @RequestBody AddUserStoryRequest request) {
         return projectService.addUserStory(id, request.title, request.description);
+    }
+
+    @GetMapping("test")
+    @ResponseStatus(HttpStatus.OK)
+    public Iterable<Project> test() {
+        return projectRepository.findAllProjects();
     }
 }
