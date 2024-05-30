@@ -2,10 +2,11 @@ package nl.woensdag.janbusker.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
-public class UserStory {
+public class UserStory implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
