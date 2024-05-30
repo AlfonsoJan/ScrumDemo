@@ -1,24 +1,33 @@
 package nl.woensdag.janbusker.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class UserStory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String title;
+
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "project_id", nullable = false)
+    private Project project;
+
+    public UserStory() {
+
+    }
+
+    public UserStory(String title, String description, Project project) {
+        this.title = title;
+        this.description = description;
+        this.project = project;
+    }
 
     public long getId() {
         return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -35,5 +44,13 @@ public class UserStory {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getProjectId() {
+        return project.getId();
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }
