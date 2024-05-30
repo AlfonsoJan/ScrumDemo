@@ -2,6 +2,8 @@ package nl.woensdag.janbusker.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 public class UserStory {
     @Id
@@ -15,6 +17,9 @@ public class UserStory {
     @ManyToOne
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
+
+    @OneToMany(mappedBy = "userStory", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Task> task;
 
     public UserStory() {
 
@@ -52,5 +57,13 @@ public class UserStory {
 
     public void setProject(Project project) {
         this.project = project;
+    }
+
+    public List<Task> getTask() {
+        return task;
+    }
+
+    public void setTask(List<Task> task) {
+        this.task = task;
     }
 }
