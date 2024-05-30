@@ -16,12 +16,18 @@ public class UserStory {
     @JoinColumn(name = "project_id", nullable = false)
     private Project project;
 
-    public long getId() {
-        return id;
+    public UserStory() {
+
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public UserStory(String title, String description, Project project) {
+        this.title = title;
+        this.description = description;
+        this.project = project;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {
@@ -40,8 +46,8 @@ public class UserStory {
         this.description = description;
     }
 
-    public Project getProject() {
-        return project;
+    public Long getProjectId() {
+        return project.getId();
     }
 
     public void setProject(Project project) {

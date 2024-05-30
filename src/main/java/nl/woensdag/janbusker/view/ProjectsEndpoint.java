@@ -3,6 +3,7 @@ package nl.woensdag.janbusker.view;
 import nl.woensdag.janbusker.model.Project;
 import nl.woensdag.janbusker.model.UserStory;
 import nl.woensdag.janbusker.repository.ProjectRepository;
+import nl.woensdag.janbusker.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.*;
 public class ProjectsEndpoint {
     @Autowired
     public ProjectRepository projectRepository;
+
+    @Autowired
+    public ProjectService projectService;
 
     @GetMapping(value = "/")
     public Iterable<Project> getAll() {
@@ -24,8 +28,8 @@ public class ProjectsEndpoint {
     }
 
     @PostMapping(value = "/")
-    public void create() {
-
+    public Project create(@RequestBody CreateProjectRequest request) {
+        return projectService.createProject(request.name, request.description);
     }
 
     @GetMapping(value = "/{id}/userstories")
@@ -38,7 +42,7 @@ public class ProjectsEndpoint {
     }
 
     @PostMapping(value = "/{id}/userstories")
-    public void addUserStory() {
-
+    public UserStory addUserStory(@PathVariable("id") Long id, @RequestBody AddUserStoryRequest request) {
+        return projectService.addUserStory(id, request.title, request.description);
     }
 }

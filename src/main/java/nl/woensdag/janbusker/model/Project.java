@@ -2,6 +2,7 @@ package nl.woensdag.janbusker.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,7 +26,10 @@ public class Project {
     public Project(String name, String description) {
         this.name = name;
         this.description = description;
+        this.userStories = new ArrayList<UserStory>();
     }
+
+    public Long getId() { return id; }
 
     public String getName() {
         return name;
