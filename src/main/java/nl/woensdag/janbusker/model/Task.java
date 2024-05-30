@@ -12,6 +12,9 @@ public class Task {
 
     private boolean isCompleted = false;
 
+    @ManyToOne
+    private UserStory userStory;
+
     public Task() { }
 
     public Long getId() {
@@ -32,5 +35,13 @@ public class Task {
 
     public void setCompleted(boolean completed) {
         isCompleted = completed;
+    }
+
+    public UserStory getUserStory() {
+        return userStory;
+    }
+
+    public void setUserStory(UserStory userStory) {
+        this.userStory = userStory;
     }
 }
